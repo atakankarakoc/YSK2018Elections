@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{title}}</title>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-12 text-center">
+                <div id="map">
+                    <script>
+                        var Ince = {{ince |safe}};
+                        var Meral = {{meral |safe}};
+                        var Rte = {{rte | safe}};
+                        var Selo = {{selo |safe}};
+                        var Temel = {{temel |safe}};
+                        var Dogu = {{dogu |safe}};
+
+                        var votesOfInce = Object.values(Ince);
+                        var votesOfMeral = Object.values(Meral);
+                        var votesOfRte = Object.values(Rte);
+                        var votesOfSelo = Object.values(Selo);
+                        var votesOfTemel = Object.values(Temel);
+                        var votesOfDogu = Object.values(Dogu);
+
+                        var data = [
+                            {Ilce_no:"3", name:"ADALAR", lat:"40.84980484545575", lon:"29.114243238167074"},
+                            {Ilce_no:"963", name:"ARNAVUTKÖY", lat:"41.18634525579875", lon:"28.7386673741786"},
+                            {Ilce_no:"964", name:"ATAŞEHİR", lat:"40.98763607480834", lon:"29.12982058683655"},
+                            {Ilce_no:"895", name:"AVCILAR", lat:"40.9804125429646", lon:"28.719799948262335"},
+                            {Ilce_no:"896", name:"BAĞCILAR", lat:"41.044336183386626", lon:"28.82968515028297"},
+                            {Ilce_no:"897", name:"BAHÇELİEVLER", lat:"41.004835952565614", lon:"28.842154908497935"},
+                            {Ilce_no:"65", name:"BAKIRKÖY", lat:"40.96824404732398", lon:"28.821834766510715"},
+                            {Ilce_no:"965", name:"BAŞAKŞEHİR", lat:"41.10130475895928", lon:"28.747017079329304"},
+                            {Ilce_no:"779", name:"BAYRAMPAŞA", lat:"41.05197928820169", lon:"28.899845004067842"},
+                            {Ilce_no:"82", name:"BEŞİKTAŞ", lat:"41.04224249269215", lon:"29.006557593457256"},
+                            {Ilce_no:"84", name:"BEYKOZ", lat:"41.13280314277016", lon:"29.105139521155387"},
+                            {Ilce_no:"966", name:"BEYLİKDÜZÜ", lat:"40.9968389020824", lon:"28.648353215799034"},
+                            {Ilce_no:"85", name:"BEYOĞLU", lat:"41.02856692811579", lon:"28.97358251433812"},
+                            {Ilce_no:"675", name:"BÜYÜKÇEKMECE", lat:"41.02468246801003", lon:"28.58585720674654"},
+                            {Ilce_no:"135", name:"ÇATALCA", lat:"41.14213948298507", lon:"28.456606427432952"},
+                            {Ilce_no:"967", name:"ÇEKMEKÖY", lat:"41.03466842908067", lon:"29.18237106424375"},
+                            {Ilce_no:"908", name:"ESENLER", lat:"41.05401453103344", lon:"28.867970570036483"},
+                            {Ilce_no:"968", name:"ESENYURT", lat:"41.041948096963885", lon:"28.687996459642815"},
+                            {Ilce_no:"263", name:"EYÜPSULTAN", lat:"41.04312807457059", lon:"28.929836238214214"},
+                            {Ilce_no:"225", name:"FATİH", lat:"41.02055263774491", lon:"28.934632762091915"},
+                            {Ilce_no:"233", name:"GAZİOSMANPAŞA", lat:"41.08451095278698", lon:"28.889142619998285"},
+                            {Ilce_no:"902", name:"GÜNGÖREN", lat:"41.02115989050954", lon:"28.874812421537957"},
+                            {Ilce_no:"316", name:"KADIKÖY", lat:"40.97992208089835", lon:"29.08191227082231"},
+                            {Ilce_no:"703", name:"KAĞITHANE", lat:"41.07173887676887", lon:"28.964330644297345"},
+                            {Ilce_no:"344", name:"KARTAL", lat:"40.90727039320814", lon:"29.20682791823584"},
+                            {Ilce_no:"716", name:"KÜÇÜKÇEKMECE", lat:"41.008449401274554", lon:"28.77258438396827"},
+                            {Ilce_no:"904", name:"MALTEPE", lat:"40.93161222246", lon:"29.12864135314336"},
+                            {Ilce_no:"728", name:"PENDİK", lat:"40.8791848030015", lon:"29.25626511507898"},
+                            {Ilce_no:"969", name:"SANCAKTEPE", lat:"40.99525187818301", lon:"29.218143433371274"},
+                            {Ilce_no:"497", name:"SARIYER", lat:"41.16222598693775", lon:"29.053803248359838"},
+                            {Ilce_no:"515", name:"SİLİVRİ", lat:"41.076296065696795", lon:"28.24683772188524"},
+                            {Ilce_no:"906", name:"SULTANBEYLİ", lat:"40.967931405400016", lon:"29.260975641122947"},
+                            {Ilce_no:"970", name:"SULTANGAZİ", lat:"41.10725647995477", lon:"28.874804975046533"},
+                            {Ilce_no:"552", name:"ŞİLE", lat:"41.17474028633307", lon:"29.61077274472004"},
+                            {Ilce_no:"556", name:"ŞİŞLİ", lat:"41.06560002573847", lon:"28.985981832868912"},
+                            {Ilce_no:"907", name:"TUZLA", lat:"40.84381885201235", lon:"29.300604380718962"},
+                            {Ilce_no:"745", name:"ÜMRANİYE", lat:"41.03330702188467", lon:"29.09797238437736"},
+                            {Ilce_no:"601", name:"ÜSKÜDAR", lat:"41.03105712629172", lon:"29.03055674587511"},
+                            {Ilce_no:"632", name:"ZEYTİNBURNU", lat:"40.99118399798371", lon:"28.898414658979867"},
+                        ]
+
+                        var scatterData = {
+                            type: "scattergeo",
+                            mode: "markers",
+                            lon: data.map(d => d.lon),
+                            lat: data.map(d => d.lat),
+                            name: data.map(d => d.name),
+                            text: data.map(
+                                (d, index) =>
+                                  " <b> " +d.name +"</b>" +
+                                  "<br> MUHARREM İNCE: " + votesOfInce[index] +
+                                  "<br> MERAL AKŞENER: " + votesOfMeral[index] +
+                                  "<br> RECEP TAYYİP ERDOĞAN: " + votesOfRte[index] +
+                                  "<br> SELAHATTİN DEMİRTAŞ: " + votesOfSelo[index] +
+                                  "<br> TEMEL KARAMOLLAOĞLU: " + votesOfTemel[index] +
+                                  "<br> DOĞU PERİNÇEK: " + votesOfDogu[index]
+                              ),
+                            marker: {
+                                size: 8,
+                                color: "rgb(229,182,0)",
+                                line: {
+                                    width: 1,
+                                    color: "rgb(0,74,208)"
+                                },
+                                symbol: "circle-open-dot"
+                            },
+                            hoverinfo: 'text',
+                        };
+
+
+                        var layout = {
+                            title: "İstanbul İlçe Sonuçları",
+                            width:1200,
+                            height:500,
+                            mapbox:{
+                                style: "open-street-map"
+                            },
+                            geo: {
+                                scope: "world",
+                                resolution: 50,
+                                showcountries: true,
+                                countrycolor: 'rgb(58,30,8)',
+                                showsubunits: true,
+                                subunitcolor: 'rgb(52,147,32)',
+                                showland: true,
+                                landcolor: 'rgb(52,147,32)',
+                                showcoastlines: true,
+                                coastlinecolor: 'rgb(62,4,117)',
+                                showocean: true,
+                                oceancolor: 'rgb(2,79,138)',
+                                showlakes: true,
+                                lakecolor: 'rgb(36,111,227)',
+                                showrivers: true,
+                                rivercolor: "rgb(0,200,218)",
+                                lonaxis: {
+                                    range: [28, 30]
+                                },
+                                lataxis: {
+                                    range: [40, 42]
+                                }
+                            }
+                        };
+
+
+                        var plotData = [scatterData];
+                        Plotly.newPlot("map", plotData, layout);
+                    </script>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col" style="text-align: center">ILCE NO</th>
+                    <th scope="col" style="text-align: center">ILCE ADI</th>
+                    <th scope="col" style="text-align: center">MUHARREM İNCE</th>
+                    <th scope="col" style="text-align: center">MERAL AKŞENER</th>
+                    <th scope="col" style="text-align: center">RECEP TAYYİP ERDOĞAN</th>
+                    <th scope="col" style="text-align: center">SELAHATTİN DEMİRTAŞ</th>
+                    <th scope="col" style="text-align: center">TEMEL KARAMOLLAOĞLU</th>
+                    <th scope="col" style="text-align: center">DOĞU PERİNÇEK</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for index, row in ilce.iterrows() %}
+                    <tr>
+                        <td style="text-align: center">{{row['ILCE NO']}}</td>
+                        <td style="text-align: center">{{row['ILCE ADI']}}</td>
+                        <td style="text-align: center">{{row['MUHARREM İNCE']}}</td>
+                        <td style="text-align: center">{{row['MERAL AKŞENER']}}</td>
+                        <td style="text-align: center">{{row['RECEP TAYYİP ERDOĞAN']}}</td>
+                        <td style="text-align: center">{{row['SELAHATTİN DEMİRTAŞ']}}</td>
+                        <td style="text-align: center">{{row['TEMEL KARAMOLLAOĞLU']}}</td>
+                        <td style="text-align: center">{{row['DOĞU PERİNÇEK']}}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+</body>
+</html>

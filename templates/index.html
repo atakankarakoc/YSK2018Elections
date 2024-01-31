@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{title}}</title>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <link rel="stylesheet" href="/static/style.css" type="text/css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-12 text-center">
+                <div id="map">
+                    <script>
+                        var Ince = {{ince |safe}};
+                        var Meral = {{meral |safe}};
+                        var Rte = {{rte | safe}};
+                        var Selo = {{selo |safe}};
+                        var Temel = {{temel |safe}};
+                        var Dogu = {{dogu |safe}};
+
+
+                        var votesOfInce = Object.values(Ince);
+                        var votesOfMeral = Object.values(Meral);
+                        var votesOfRte = Object.values(Rte);
+                        var votesOfSelo = Object.values(Selo);
+                        var votesOfTemel = Object.values(Temel);
+                        var votesOfDogu = Object.values(Dogu);
+
+                        var data = [
+                            { il_Id:"1", name: "Adana",   lat: 36.98615, lon: 35.32531 },
+                            { il_Id:"2", name: "Adıyaman",  lat: 37.76441, lon: 38.27629 },
+                            { il_Id:"3", name: "Afyonkarahisar",  lat: 38.75667, lon: 30.54333 },
+                            { il_Id:"4", name: "Ağrı",  lat: 39.71467, lon: 43.04015 },
+                            { il_Id:"5", name: "Amasya",  lat: 40.65333, lon: 35.83306 },
+                            { il_Id:"6", name: "Ankara", lat: 39.91987, lon: 32.85427 },
+                            { il_Id:"7", name: "Antalya", lat: 36.90812, lon: 30.69556 },
+                            { il_Id:"8", name: "Artvin", lat: 41.18161, lon: 41.82172 },
+                            { il_Id:"9", name: "Aydın", lat: 37.84501, lon: 27.83963 },
+                            { il_Id:"10", name: "Balıkesir", lat: 39.64917, lon: 27.88611 },
+                            { il_Id:"11", name: "Bilecik", lat: 40.14192, lon: 29.97932 },
+                            { il_Id:"12", name: "Bingöl", lat: 38.88472 , lon: 40.49389 },
+                            { il_Id:"13", name: "Bitlis", lat: 38.40115 , lon: 42.10784  },
+                            { il_Id:"14", name: "Bolu", lat: 40.73583 , lon: 31.60611  },
+                            { il_Id:"15", name: "Burdur", lat: 37.72028, lon:30.29083  },
+                            { il_Id:"16", name: "Bursa", lat: 40.19559, lon:29.06013  },
+                            { il_Id:"17", name: "Çanakkale", lat: 40.15552, lon: 26.41271 },
+                            { il_Id:"18", name: "Çankırı", lat: 40.59995, lon: 33.6153 },
+                            { il_Id:"19", name: "Çorum", lat:40.54889, lon:34.95333  },
+                            { il_Id:"20", name: "Denizli", lat:37.77417 , lon:29.0875  },
+                            { il_Id:"21", name: "Diyarbakır ", lat: 37.91363, lon: 40.21721 },
+                            { il_Id:"22", name: "Edirne", lat:41.67719 , lon:26.55597  },
+                            { il_Id:"23", name: "Elazığ", lat: 38.67431, lon:39.22321  },
+                            { il_Id:"24", name: "Erzincan", lat:39.73919 , lon:39.49015  },
+                            { il_Id:"25", name: "Erzurum ", lat:39.90861 , lon:41.27694  },
+                            { il_Id:"26", name: "Eskişehir ", lat:39.77667 , lon:30.52056 },
+                            { il_Id:"27", name: "Gaziantep ", lat:37.05944 , lon:37.3825 },
+                            { il_Id:"28", name: "Giresun ", lat:40.91698 , lon:38.38741 },
+                            { il_Id:"29", name: "Gümüşhane ", lat:40.46001 , lon:39.47176 },
+                            { il_Id:"30", name: "Hakkari ", lat:37.58333 , lon:44.16667 },
+                            { il_Id:"31", name: "Hatay", lat:36.58718 , lon:36.17347 },
+                            { il_Id:"32", name: "Isparta ", lat:37.76444 , lon:30.55222 },
+                            { il_Id:"33", name: "Mersin ", lat:36.81196, lon:34.63886 },
+                            { il_Id:"34", name: "İstanbul", lat:41.01384 , lon:28.94966 },
+                            { il_Id:"35", name: "İzmir ", lat:38.41273 , lon:27.13838 },
+                            { il_Id:"36", name: "Kars", lat:40.59825 , lon:43.08548},
+                            { il_Id:"37", name: "Kastamonu", lat:41.37805 , lon:33.77528},
+                            { il_Id:"38", name: "Kayseri", lat:38.73222 , lon:35.48528 },
+                            { il_Id:"39", name: "Kırklareli", lat:41.73508 , lon:27.22521 },
+                            { il_Id:"40", name: "Kırşehir", lat:39.14583 , lon:34.16389 },
+                            { il_Id:"41", name: "Kocaeli", lat:40.76499 , lon:29.92928 },
+                            { il_Id:"42", name: "Konya", lat:37.87135 , lon:32.48464 },
+                            { il_Id:"43", name: "Kütahya", lat:39.42417 , lon:29.98333},
+                            { il_Id:"44", name: "Malatya", lat:38.45469992328295 , lon:38.33099815806613 },
+                            { il_Id:"45", name: "Manisa", lat:38.61202  , lon:27.42647 },
+                            { il_Id:"46", name: "Kahramanmaraş", lat:37.5847 , lon:36.92641 },
+                            { il_Id:"47", name: "Mardin", lat:37.31309 , lon:40.74357 },
+                            { il_Id:"48", name: "Muğla", lat:37.21807 , lon:28.3665 },
+                            { il_Id:"49", name: "Muş", lat:38.73163 , lon:41.48482 },
+                            { il_Id:"50", name: "Nevşehir", lat:38.625 , lon:34.71222 },
+                            { il_Id:"51", name: "Niğde", lat:37.96583 , lon:34.67935 },
+                            { il_Id:"52", name: "Ordu", lat:40.97782 , lon:37.89047 },
+                            { il_Id:"53", name: "Rize", lat:41.02083 , lon:40.52194 },
+                            { il_Id:"54", name: "Sakarya", lat:40.75 , lon:30.58333 },
+                            { il_Id:"55", name: "Samsun", lat:41.25 , lon:36.33333 },
+                            { il_Id:"56", name: "Siirt ", lat:37.96152 , lon:41.9458},
+                            { il_Id:"57", name: "Sinop", lat:41.77106 , lon:34.87095 },
+                            { il_Id:"58", name: "Sivas", lat:39.79165 , lon:37.00195 },
+                            { il_Id:"59", name: "Tekirdağ", lat:41 , lon:27.5},
+                            { il_Id:"60", name: "Tokat", lat:40.41667 , lon:36.58333 },
+                            { il_Id:"61", name: "Trabzon", lat:40.86946 , lon:39.81255 },
+                            { il_Id:"62", name: "Tunceli", lat:39.10711 , lon:39.54749 },
+                            { il_Id:"63", name: "Şanlıurfa", lat:37.21283 , lon:38.78174 },
+                            { il_Id:"64", name: "Uşak", lat:38.67351 , lon:29.4058},
+                            { il_Id:"65", name: "Van", lat:38.40736 , lon:43.71779 },
+                            { il_Id:"66", name: "Yozgat", lat:39.58333 , lon:35.33333 },
+                            { il_Id:"67", name: "Zonguldak", lat:41.25 , lon:31.83333},
+                            { il_Id:"68", name: "Aksaray",  lat: 38.37255, lon: 34.02537 },
+                            { il_Id:"69", name: "Bayburt", lat:40.2628984984483, lon:40.227556965971374 },
+                            { il_Id:"70", name: "Karaman", lat:37.18132956116318 , lon:33.21974098403321 },
+                            { il_Id:"71", name: "Kırıkkale", lat:39.84006151463074 , lon:33.51201962347378 },
+                            { il_Id:"72", name: "Batman", lat: 37.88738, lon: 41.13221 },
+                            { il_Id:"73", name: "Şırnak", lat:37.5190601124617 , lon:42.45346647484283 },
+                            { il_Id:"74", name: "Bartın", lat: 41.63583, lon: 32.3375 },
+                            { il_Id:"75", name: "Ardahan", lat: 41.10871, lon: 42.70222 },
+                            { il_Id:"76", name: "Iğdır", lat:39.920125079870196 , lon:44.043594118508004 },
+                            { il_Id:"77", name: "Yalova", lat:40.654522955483884 , lon:29.283022098253376 },
+                            { il_Id:"78", name: "Karabük", lat:41.19652927369117 , lon:32.622849944619475 },
+                            { il_Id:"79", name: "Kilis", lat:36.71652008570009 , lon:37.11403296704981 },
+                            { il_Id:"80", name: "Osmaniye", lat:37.0746648150536 , lon:36.24844977123504 },
+                            { il_Id:"81", name: "Düzce", lat:40.83895059202053 , lon:31.16220164027248 },
+                        ];
+
+                        var scatterData = {
+                            type: "scattergeo",
+                            mode: "markers",
+                            lon: data.map(d => d.lon),
+                            lat: data.map(d => d.lat),
+                            name: data.map(d => d.name),
+                            text: data.map(
+                                (d, index) =>
+                                  "<b>" +d.name +"</b>" +
+                                  "<br> MUHARREM İNCE: " + votesOfInce[index] +
+                                  "<br> MERAL AKŞENER: " + votesOfMeral[index] +
+                                  "<br> RECEP TAYYİP ERDOĞAN: " + votesOfRte[index] +
+                                  "<br> SELAHATTİN DEMİRTAŞ: " + votesOfSelo[index] +
+                                  "<br> TEMEL KARAMOLLAOĞLU: " + votesOfTemel[index] +
+                                  "<br> DOĞU PERİNÇEK: " + votesOfDogu[index]
+                              ),
+                            marker: {
+                                size: 8,
+                                color: "rgb(229,182,0)",
+                                line: {
+                                    width: 1,
+                                    color: "rgb(0,74,208)"
+                                },
+                                symbol: "circle-open-dot"
+                            },
+                            hoverinfo: 'text',
+                        };
+
+
+                        var layout = {
+                            title: "<b>"+"2018 Cumhurbaşkanlığı Seçimi"+"</b>"+"<br>"+"Türkiye Seçim Sonuçları",
+                            width:1200,
+                            height:500,
+                            mapbox:{
+                                style: "open-street-map"
+                            },
+                            geo: {
+                                scope: "world",
+                                resolution: 50,
+                                showcountries: true,
+                                countrycolor: 'rgb(58,30,8)',
+                                showsubunits: true,
+                                subunitcolor: 'rgb(52,147,32)',
+                                showland: true,
+                                landcolor: 'rgb(52,147,32)',
+                                showcoastlines: true,
+                                coastlinecolor: 'rgb(62,4,117)',
+                                showocean: true,
+                                oceancolor: 'rgb(2,79,138)',
+                                showlakes: true,
+                                lakecolor: 'rgb(36,111,227)',
+                                showrivers: true,
+                                rivercolor: "rgb(0,200,218)",
+                                lonaxis: {
+                                    range: [25, 45]
+                                },
+                                lataxis: {
+                                    range: [35, 43]
+                                }
+                            }
+                        };
+
+                        var mapElement = document.getElementById('map');
+                        Plotly.newPlot(mapElement, data, layout).then(function(newPlot) {
+                          newPlot.on('plotly_click', function(data) {
+                            pts='';
+                            for (var i = 0; i < data.points.length; i++) {
+                                pts += data.points[i].text.match(/<b>(.*?)<\/b>/)[1].trim();
+                            }
+                            window.location.href = "/"+pts;
+                          });
+                        });
+
+
+                        var plotData = [scatterData];
+                        Plotly.newPlot("map", plotData, layout);
+                    </script>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col" style="text-align: center">IL NO</th>
+                    <th scope="col" style="text-align: center">Il ADI</th>
+                    <th scope="col" style="text-align: center">MUHARREM İNCE</th>
+                    <th scope="col" style="text-align: center">MERAL AKŞENER</th>
+                    <th scope="col" style="text-align: center">RECEP TAYYİP ERDOĞAN</th>
+                    <th scope="col" style="text-align: center">SELAHATTİN DEMİRTAŞ</th>
+                    <th scope="col" style="text-align: center">TEMEL KARAMOLLAOĞLU</th>
+                    <th scope="col" style="text-align: center">DOĞU PERİNÇEK</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for index, row in city.iterrows() %}
+                    <tr>
+                        <td style="text-align: center">{{row['IL NO']}}</td>
+                        <td style="text-align: center">{{row['IL ADI']}}</td>
+                        <td style="text-align: center">{{row['MUHARREM İNCE']}}</td>
+                        <td style="text-align: center">{{row['MERAL AKŞENER']}}</td>
+                        <td style="text-align: center">{{row['RECEP TAYYİP ERDOĞAN']}}</td>
+                        <td style="text-align: center">{{row['SELAHATTİN DEMİRTAŞ']}}</td>
+                        <td style="text-align: center">{{row['TEMEL KARAMOLLAOĞLU']}}</td>
+                        <td style="text-align: center">{{row['DOĞU PERİNÇEK']}}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+</body>
+</html>
